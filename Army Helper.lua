@@ -28,12 +28,14 @@ function main()
     while not isSampAvailable() do wait(100) end
 
     sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Данный скрипт успешно загружен!",-1)
+    
+    sampRegisterChatCommand(updatelist, cmd_updatelist)
 
     downloadUrlToFile(update_url, update_path, function(id, status)
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Было найдено новое обновление! Старая версия: " .. script_vers .. " Новая версия:  " .. updateIni.info.vers_text, -1)
+                sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Было найдено новое обновление! Посмотреть что нового: /updatelist", -1)
                 update_state = true
             end
             os.remove(update_path)
@@ -52,4 +54,8 @@ function main()
             break
         end
 	end
+end
+
+function cmd_updatelist()
+    sampShowDialog(444,"Обновление","Добавлено автообновление","соси","хуй",0)
 end
