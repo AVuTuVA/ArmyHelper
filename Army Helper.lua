@@ -1,6 +1,6 @@
 script_name('Army Helper')
 script_author('VuTuV')
-script_description('Хелпер для армии') 
+script_description('РҐРµР»РїРµСЂ РґР»СЏ Р°СЂРјРёРё') 
 
 require "lib.moonloader"
 local dlstatus = require('moonloader').download_status
@@ -13,13 +13,13 @@ u8 = encoding.UTF8
 
 update_state = false
 
-local script_vers = 2
+local script_vers = 1
 local script_vers_text = "1.00"
 
 local update_url = "https://raw.githubusercontent.com/AVuTuVA/ArmyHelper/master/update.ini"
 local update_path = getWorkingDirectory() .. "/update.ini" 
 
-local script_url = ""
+local script_url = "https://raw.githubusercontent.com/AVuTuVA/ArmyHelper/master/Army%20Helper.lua"
 local script_path = thisScript().path
 
 
@@ -27,13 +27,13 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
     while not isSampAvailable() do wait(100) end
 
-    sampAddChatMessage("[Army Helper] Данный скрипт успешно загружен!",-1)
+    sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Р”Р°РЅРЅС‹Р№ СЃРєСЂРёРїС‚ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ!",-1)
 
     downloadUrlToFile(update_url, update_path, function(id, status)
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage("[Army Helper] Было найдено новое обновление! Старая версия: " .. script_vers .. " Новая версия:  " .. updateIni.info.vers_text, -1)
+                sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Р‘С‹Р»Рѕ РЅР°Р№РґРµРЅРѕ РЅРѕРІРѕРµ РѕР±РЅРѕРІР»РµРЅРёРµ! РЎС‚Р°СЂР°СЏ РІРµСЂСЃРёСЏ: " .. script_vers .. " РќРѕРІР°СЏ РІРµСЂСЃРёСЏ:  " .. updateIni.info.vers_text, -1)
                 update_state = true
             end
             os.remove(update_path)
@@ -45,7 +45,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("[Army Helper] Скрипт был успешно обновлен! Посмотреть что нового /updatelist.", -1)
+                    sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}РЎРєСЂРёРїС‚ Р±С‹Р» СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅ! РџРѕСЃРјРѕС‚СЂРµС‚СЊ С‡С‚Рѕ РЅРѕРІРѕРіРѕ /updatelist.", -1)
                     thisScript():reload()
                 end
             end)
