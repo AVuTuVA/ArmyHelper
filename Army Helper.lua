@@ -29,7 +29,8 @@ function main()
 
     sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Данный скрипт успешно загружен!",-1)
 
-    sampRegisterChatCommand("updatelist",cmd_updatelist)
+    sampRegisterChatCommand("updatelist", cmd_updatelist)
+    sampRegisterChatCommand("a_help", cmd_a_help)
 
     downloadUrlToFile(update_url, update_path, function(id, status)
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
@@ -57,5 +58,9 @@ function main()
 end
 
 function cmd_updatelist()   
-    sampShowDialog(400,"обновление","система автообновления","соси","хуй",0)
+    sampShowDialog(400,"Обновление","В данном обновление было добавлено:\n1. Оптимизация.","Закрыть","",0)
+end
+
+function cmd_a_help()   
+    sampShowDialog(401,"Список команд:","Все команды:\nВ разработке","Закрыть","",0)
 end
