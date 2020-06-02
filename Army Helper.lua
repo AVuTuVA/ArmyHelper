@@ -1,6 +1,6 @@
 script_name('Army Helper')
 script_author('VuTuV')
-script_description('РҐРµР»РїРµСЂ РґР»СЏ Р°СЂРјРёРё') 
+script_description('Хелпер для армии') 
 
 require "lib.moonloader"
 local dlstatus = require('moonloader').download_status
@@ -27,7 +27,7 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
     while not isSampAvailable() do wait(100) end
 
-    sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Р”Р°РЅРЅС‹Р№ СЃРєСЂРёРїС‚ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ!",-1)
+    sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Данный скрипт успешно загружен!",-1)
     
     sampRegisterChatCommand(updatelist, cmd_updatelist)
 
@@ -35,7 +35,7 @@ function main()
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Р‘С‹Р»Рѕ РЅР°Р№РґРµРЅРѕ РЅРѕРІРѕРµ РѕР±РЅРѕРІР»РµРЅРёРµ! РџРѕСЃРјРѕС‚СЂРµС‚СЊ С‡С‚Рѕ РЅРѕРІРѕРіРѕ: /updatelist", -1)
+                sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Было найдено новое обновление! Посмотреть что нового: /updatelist", -1)
                 update_state = true
             end
             os.remove(update_path)
@@ -47,7 +47,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}РЎРєСЂРёРїС‚ Р±С‹Р» СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅ! РџРѕСЃРјРѕС‚СЂРµС‚СЊ С‡С‚Рѕ РЅРѕРІРѕРіРѕ /updatelist.", -1)
+                    sampAddChatMessage("{00FF00}[Army Helper] {FFFFFF}Скрипт был успешно обновлен! Посмотреть что нового /updatelist.", -1)
                     thisScript():reload()
                 end
             end)
@@ -57,5 +57,5 @@ function main()
 end
 
 function cmd_updatelist()
-    sampShowDialog(444,"РћР±РЅРѕРІР»РµРЅРёРµ","Р”РѕР±Р°РІР»РµРЅРѕ Р°РІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ","СЃРѕСЃРё","С…СѓР№",0)
+    sampShowDialog(444,"Обновление","Добавлено автообновление","соси","хуй",0)
 end
