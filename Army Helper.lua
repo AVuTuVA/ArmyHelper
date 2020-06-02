@@ -8,6 +8,8 @@ local inicfg = require 'inicfg'
 local keys = require "vkeys"
 local imgui = require 'imgui'
 local encoding = require 'encoding'
+local sampev = require 'lib.samp.events'
+local audio = loadAudioStream('moonloader/sound.wav')
 encoding.default = 'CP1251'
 u8 = encoding.UTF8
 
@@ -43,6 +45,8 @@ function main()
         end
     end)
     
+    setAudioStreamState(audio, 1)
+    
 	while true do
         wait(0)
         if update_state then
@@ -59,8 +63,10 @@ end
 
 function cmd_updatelist()   
     sampShowDialog(400,"Обновление","В данном обновление было добавлено:\n1. Оптимизация.","Закрыть","",0)
+    setAudioStreamState(audio, 1)
 end
 
 function cmd_a_help()   
     sampShowDialog(401,"Список команд:","Все команды:\nВ разработке","Закрыть","",0)
+    setAudioStreamState(audio, 1)
 end
